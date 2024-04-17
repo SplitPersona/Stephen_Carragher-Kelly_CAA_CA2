@@ -7,21 +7,29 @@
 
 #include <list>
 
+enum class Direction
+        {
+    NORTH,
+    EAST,
+    SOUTH,
+    WEST
+        };
+
 class Bug {
 
-    enum direction{NORTH, EAST, SOUTH, WEST};
-
-private:
-    int ID;
+protected:
+    int id;
     std::pair<int, int> position;
-    direction direct;
+    Direction direction;
     int size;
     bool alive;
     std::list<std::pair<int,int>> path;
 
 public:
-    Bug();
-    Bug(int id, int x, int y, int direction, int size);
+    Bug(int id, int x, int y, Direction direct, int size);
+
+    virtual ~Bug();
+
     virtual void move() = 0;
 
     bool isWayBlocked();
@@ -31,8 +39,6 @@ public:
     void addToPath(int x, int y);
 
     void printPath();
-
-    virtual ~Bug();
 
 };
 
