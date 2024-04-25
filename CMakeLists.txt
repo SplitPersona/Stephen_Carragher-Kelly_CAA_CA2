@@ -10,6 +10,8 @@ add_executable(Stephen_Carragher_Kelly_CA2 main.cpp
         Crawler.h
         Hopper.cpp
         Hopper.h
+        Board.cpp
+        Board.h
 
 
 )

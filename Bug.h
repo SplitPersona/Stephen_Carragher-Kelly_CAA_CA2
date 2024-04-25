@@ -30,6 +30,17 @@ public:
 
     virtual ~Bug();
 
+    int getID() const
+    {
+        return id;
+    }
+    std::pair<int, int> getPosition() const
+    {
+        return position;
+    }
+    Direction getDirection()
+
+
     virtual void move() = 0;
 
     bool isWayBlocked();
