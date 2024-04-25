@@ -11,8 +11,14 @@ class Crawler : public Bug {
 
 public:
     Crawler(int id, int x, int y, Direction direction, int size);
-    void move() override;
+    virtual ~Crawler();
 
+    virtual void move() override;
+
+    virtual BugType getType() const override
+    {
+        return BugType::CRAWLER;
+    }
 };
 
 

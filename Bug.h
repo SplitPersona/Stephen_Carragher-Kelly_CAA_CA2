@@ -15,6 +15,12 @@ enum class Direction
     WEST
         };
 
+enum class BugType
+        {
+    CRAWLER,
+    HOPPER
+        };
+
 class Bug {
 
 protected:
@@ -38,8 +44,20 @@ public:
     {
         return position;
     }
-    Direction getDirection()
+    Direction getDirection() const
+    {
+        return direction;
+    }
+    int getSize() const
+    {
+        return size;
+    }
+    bool isAlive() const {
+        return alive;
+    }
+    std::string getDirectionString() const;
 
+    virtual BugType getType() const = 0;
 
     virtual void move() = 0;
 

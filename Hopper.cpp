@@ -7,6 +7,8 @@
 
 Hopper::Hopper(int id, int x, int y, Direction direction, int size, int hopeLength) : Bug(id, x, y, direction, size), hopLength(hopeLength) {}
 
+Hopper::~Hopper() {}
+
 void Hopper::move() {
 
     if(isWayBlocked())

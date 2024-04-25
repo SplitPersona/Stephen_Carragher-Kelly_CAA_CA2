@@ -34,4 +34,20 @@ void Bug::printPath() {
     cout << endl;
 }
 
+std::string  Bug::getDirectionString() const {
+    switch (direction) {
+        case Direction::NORTH:
+            return "North";
+        case Direction::EAST:
+            return "East";
+        case Direction::SOUTH:
+            return "South";
+        case Direction::WEST:
+            return "West";
+        default:
+            return "Unknown";
+    }
+}
+
 Bug::~Bug(){}
+

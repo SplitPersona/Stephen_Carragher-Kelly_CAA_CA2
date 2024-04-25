@@ -7,6 +7,8 @@
 
 Crawler::Crawler(int id, int x, int y, Direction direction, int size) : Bug(id, x, y, direction, size) {}
 
+Crawler::~Crawler(){}
+
 void Crawler::move() {
 
     if(isWayBlocked())

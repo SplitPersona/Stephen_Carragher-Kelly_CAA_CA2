@@ -76,8 +76,15 @@ void Board::initializeBugBoard(const string &filename) {
     file.close();
 }
 
-void Board::displayAllBugs() {
-    for(const Bug* bug: bugs){
-        cout << bug-> getID()
+void Board::displayAllBugs()
+{
+    for(const Bug* bug: bugs)
+    {
+        cout << bug-> getID() << " " << (bug->getType() == BugType::CRAWLER ? "Crawler" : "Hopper")
+        << " (" << bug->getPosition().first << "," << bug->getPosition().second << ")"
+        << " " << bug->getSize() << " " << bug->getDirectionString()
+        << (bug->getType() == BugType::HOPPER ? " " + to_string(static_cast<const Hopper*>(bug)->getHopLength()): "")
+        << (bug->isAlive() ? "Alive" : "Dead") << endl;
+        //i hate this ^ so much.
     }
 }

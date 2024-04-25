@@ -14,8 +14,19 @@ private:
 
 public:
     Hopper(int id, int x, int y, Direction direction, int size, int hopeLength);
-    void move() override;
 
+
+    virtual ~Hopper();
+    int getHopLength() const
+    {
+        return hopLength;
+    }
+    virtual BugType getType() const override
+    {
+        return BugType::HOPPER;
+    }
+
+    virtual void move() override;
 };
 
 
