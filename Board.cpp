@@ -88,3 +88,39 @@ void Board::displayAllBugs()
         //i hate this ^ so much.
     }
 }
+
+void Board::findBugByID(int id)
+{
+    bool found = false;
+    for(const Bug* bug : bugs)
+    {
+        if(bug->getID() == id)
+        {
+            cout << "Bug Found: " << endl;
+            cout << "ID: " << bug->getID() << endl;
+            cout << "Type: " << (bug->getType() == BugType::CRAWLER ? "Crawler" : "Hopper") << endl;
+            cout << "Position: (" << bug->getPosition().first << ", " << bug->getPosition().second << ")" << endl;
+            cout << "Size: " << bug->getSize() << endl;
+            cout << "Direction: " << bug->getDirectionString() << endl;
+            if (bug->getType() == BugType::HOPPER)
+            {
+                cout << "Hop Length: " << static_cast<const Hopper*>(bug)->getHopLength() << endl;
+            }
+            cout << "Status: " << (bug->isAlive() ? "Alive" : "Dead") << endl;
+            found = true;
+            break;
+        }
+    }
+    if(!found)
+    {
+        cout << "Bug " << id << " not found" << endl;
+    }
+}
+
+void Board::tapBuBoard()
+{
+    for(Bug* bug: bugs)
+    {
+        bug->move();
+    }
+}

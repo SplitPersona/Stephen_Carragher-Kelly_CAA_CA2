@@ -21,6 +21,8 @@ public:
 
     void initializeBugBoard(const std::string& filename);
     void displayAllBugs();
+    void findBugByID(int id);
+    void tapBuBoard();
 };
 
 
