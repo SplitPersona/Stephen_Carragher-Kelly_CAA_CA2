@@ -5,11 +5,13 @@
 #ifndef STEPHEN_CARRAGHER_KELLY_CA2_BUG_H
 #define STEPHEN_CARRAGHER_KELLY_CA2_BUG_H
 
+#include <utility>
+#include <String>
 #include <list>
 
 enum class Direction
         {
-    NORTH,
+    NORTH = 1,
     EAST,
     SOUTH,
     WEST
@@ -21,6 +23,8 @@ enum class BugType
     HOPPER
         };
 
+class pair;
+
 class Bug {
 
 protected:
@@ -30,6 +34,7 @@ protected:
     int size;
     bool alive;
     std::list<std::pair<int,int>> path;
+    int eatenBy;
 
 public:
     Bug(int id, int x, int y, Direction direct, int size);
@@ -55,9 +60,20 @@ public:
     bool isAlive() const {
         return alive;
     }
-    std::string getDirectionString() const;
+    std::string getDirectionasString() const;
 
     virtual BugType getType() const = 0;
+
+    const std::list<std::pair<int, int>>& getPath() const
+    {
+        return path;
+    }
+
+    int gotEatenBy() const
+    {
+        return eatenBy;
+    }
+    std::string getTypeasString() const;
 
     virtual void move() = 0;
 

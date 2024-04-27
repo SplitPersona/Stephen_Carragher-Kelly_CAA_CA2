@@ -34,7 +34,7 @@ void Bug::printPath() {
     cout << endl;
 }
 
-std::string  Bug::getDirectionString() const {
+std::string  Bug::getDirectionasString() const {
     switch (direction) {
         case Direction::NORTH:
             return "North";
@@ -47,6 +47,11 @@ std::string  Bug::getDirectionString() const {
         default:
             return "Unknown";
     }
+}
+
+std::string Bug::getTypeasString() const
+{
+    return (getType() == BugType::CRAWLER) ? "Crawler" : "Hopper";
 }
 
 Bug::~Bug(){}

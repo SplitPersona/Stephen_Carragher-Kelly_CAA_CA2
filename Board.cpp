@@ -12,8 +12,9 @@
 
 using namespace std;
 
-Board::Board() {
-
+Board::Board()
+{
+    grid.resize(10, vector<vector<Bug*>>(10));
 }
 
 Board::~Board() {
@@ -82,7 +83,7 @@ void Board::displayAllBugs()
     {
         cout << bug-> getID() << " " << (bug->getType() == BugType::CRAWLER ? "Crawler" : "Hopper")
         << " (" << bug->getPosition().first << "," << bug->getPosition().second << ")"
-        << " " << bug->getSize() << " " << bug->getDirectionString()
+        << " " << bug->getSize() << " " << bug->getDirectionasString()
         << (bug->getType() == BugType::HOPPER ? " " + to_string(static_cast<const Hopper*>(bug)->getHopLength()): "")
         << (bug->isAlive() ? "Alive" : "Dead") << endl;
         //i hate this ^ so much.
@@ -101,7 +102,7 @@ void Board::findBugByID(int id)
             cout << "Type: " << (bug->getType() == BugType::CRAWLER ? "Crawler" : "Hopper") << endl;
             cout << "Position: (" << bug->getPosition().first << ", " << bug->getPosition().second << ")" << endl;
             cout << "Size: " << bug->getSize() << endl;
-            cout << "Direction: " << bug->getDirectionString() << endl;
+            cout << "Direction: " << bug->getDirectionasString() << endl;
             if (bug->getType() == BugType::HOPPER)
             {
                 cout << "Hop Length: " << static_cast<const Hopper*>(bug)->getHopLength() << endl;
@@ -124,3 +125,107 @@ void Board::tapBuBoard()
         bug->move();
     }
 }
+
+void Board::displayLifeHistory() {
+    for(const Bug* bug: bugs)
+    {
+        cout << bug->getID() << " ";
+        if(bug->getType() == BugType::CRAWLER)
+        {
+            cout << "Crawler ";
+        }
+        else
+        {
+            cout << "Hopper ";
+        }
+        cout << "Path: ";
+        for(const auto& position : bug ->getPath())
+        {
+            cout << "(" << position.first << "," << position.second << ")";
+        }
+        if(!bug->isAlive())
+        {
+            cout << " Eaten by " << bug->gotEatenBy();
+        }
+        cout << endl;
+    }
+}
+
+void Board::writeLifeHistoryToFile()
+{
+    ofstream outFile("bugs_life_history_"+getDateTimeString() + ".out");
+    if(!outFile)
+    {
+        cerr << "Error: Unable to open file." << endl;
+        return;
+    }
+
+    for(const Bug* bug: bugs)
+    {
+        outFile << bug->getID() << " ";
+        if(bug->getType() == BugType::CRAWLER)
+        {
+            outFile<<"Crawler ";
+        }
+        else
+        {
+            outFile << "Hopper ";
+        }
+        outFile << "Path: ";
+        for(const auto& position : bug ->getPath())
+        {
+            outFile << "(" << position.first << "," << position.second << ")";
+        }
+        if(!bug->isAlive())
+        {
+            outFile << " Eaten by " << bug->gotEatenBy();
+        }
+        outFile << endl;
+    }
+}
+
+void Board::displayAllCells()
+{
+    updateCellOccupancy();
+
+    for(int i = 0; i < grid.size(); ++i)
+    {
+        for(int j = 0; j < grid[i].size(); ++j)
+        {
+            cout << "(" << i << "," << j << "): ";
+            if(grid[i][j].empty())
+            {
+                cout << "Empty";
+            }
+            else
+            {
+                for(Bug* bug: grid[i][j])
+                {
+                    cout << bug->getTypeasString() << " " << bug->getID() << ", ";
+                }
+            }
+            cout << endl;
+        }
+    }
+}
+
+void Board::updateCellOccupancy()
+{
+    for(auto& row: grid)
+    {
+        for(auto& cell:row)
+        {
+            cell.clear();
+        }
+    }
+}
+
+std::string Board::getDateTimeString() const
+{
+    time_t now = time(0);
+    tm* timeInfo = localtime(&now);
+    char buffer[80];
+    strftime(buffer, 80, "%Y-%m-%d_%H-%M-%S", timeInfo);
+    return string(buffer);
+}
+

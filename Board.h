@@ -7,6 +7,8 @@
 
 #include <vector>
 #include <string>
+#include <iostream>
+#include <ctime>
 #include "Bug.h"
 
 using namespace std;
@@ -14,6 +16,7 @@ using namespace std;
 class Board {
 private:
     vector<Bug*> bugs;
+    vector<vector<vector<Bug*>>> grid;
 
 public:
     Board();
@@ -23,6 +26,13 @@ public:
     void displayAllBugs();
     void findBugByID(int id);
     void tapBuBoard();
+    void displayLifeHistory();
+    void writeLifeHistoryToFile();
+    string getDateTimeString() const;
+    void displayAllCells();
+    void updateCellOccupancy();
+    void eatBugsInCell(int x, int y);
+    void fight(Bug* bug1, Bug* bug2);
 };
 
 
