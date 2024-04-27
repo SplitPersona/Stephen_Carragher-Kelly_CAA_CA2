@@ -7,7 +7,10 @@
 
 using namespace std;
 
-Bug::Bug(int id, int x, int y, Direction direction, int size) : id(id), position(make_pair(x, y)), direction(direction), size(size), alive(true);
+Bug::Bug(int id, int x, int y, Direction direction, int size) : id(id), position(make_pair(x, y)), direction(direction), size(size), alive(true)
+{
+
+}
 
 
 void Bug::move() {}

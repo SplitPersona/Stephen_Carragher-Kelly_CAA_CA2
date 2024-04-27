@@ -79,6 +79,12 @@ build CMakeFiles/Stephen_Carragher_Kelly_CA2.dir/Board.cpp.obj: CXX_COMPILER__St
   OBJECT_DIR = CMakeFiles\Stephen_Carragher_Kelly_CA2.dir
   OBJECT_FILE_DIR = CMakeFiles\Stephen_Carragher_Kelly_CA2.dir
 
+build CMakeFiles/Stephen_Carragher_Kelly_CA2.dir/Digger.cpp.obj: CXX_COMPILER__Stephen_Carragher_Kelly_CA2_unscanned_Debug C$:/Users/StephenCarragher-Kel/Downloads/Stephen_Carragher-Kelly_CAA_CA2/Stephen_Carragher-Kelly_CAA_CA2/Digger.cpp || cmake_object_order_depends_target_Stephen_Carragher_Kelly_CA2
+  DEP_FILE = CMakeFiles\Stephen_Carragher_Kelly_CA2.dir\Digger.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Stephen_Carragher_Kelly_CA2.dir
+  OBJECT_FILE_DIR = CMakeFiles\Stephen_Carragher_Kelly_CA2.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Stephen_Carragher_Kelly_CA2
@@ -87,7 +93,7 @@ build CMakeFiles/Stephen_Carragher_Kelly_CA2.dir/Board.cpp.obj: CXX_COMPILER__St
 #############################################
 # Link the executable Stephen_Carragher_Kelly_CA2.exe
 
-build Stephen_Carragher_Kelly_CA2.exe: CXX_EXECUTABLE_LINKER__Stephen_Carragher_Kelly_CA2_Debug CMakeFiles/Stephen_Carragher_Kelly_CA2.dir/main.cpp.obj CMakeFiles/Stephen_Carragher_Kelly_CA2.dir/Bug.cpp.obj CMakeFiles/Stephen_Carragher_Kelly_CA2.dir/Crawler.cpp.obj CMakeFiles/Stephen_Carragher_Kelly_CA2.dir/Hopper.cpp.obj CMakeFiles/Stephen_Carragher_Kelly_CA2.dir/Board.cpp.obj
+build Stephen_Carragher_Kelly_CA2.exe: CXX_EXECUTABLE_LINKER__Stephen_Carragher_Kelly_CA2_Debug CMakeFiles/Stephen_Carragher_Kelly_CA2.dir/main.cpp.obj CMakeFiles/Stephen_Carragher_Kelly_CA2.dir/Bug.cpp.obj CMakeFiles/Stephen_Carragher_Kelly_CA2.dir/Crawler.cpp.obj CMakeFiles/Stephen_Carragher_Kelly_CA2.dir/Hopper.cpp.obj CMakeFiles/Stephen_Carragher_Kelly_CA2.dir/Board.cpp.obj CMakeFiles/Stephen_Carragher_Kelly_CA2.dir/Digger.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Stephen_Carragher_Kelly_CA2.dir

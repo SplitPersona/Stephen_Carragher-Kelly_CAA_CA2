@@ -41,6 +41,7 @@ public:
 
     virtual ~Bug();
 
+    //Getters
     int getID() const
     {
         return id;
@@ -74,6 +75,24 @@ public:
         return eatenBy;
     }
     std::string getTypeasString() const;
+
+    //Setters
+    void setSize(int newSize)
+    {
+        size = newSize;
+    }
+    void setAlivetoDead(bool alive)
+    {
+        alive = isAlive();
+    }
+    void setEatenBy(int ID)
+    {
+        eatenBy = ID;
+    }
+
+
+
+    //Other fuctions
 
     virtual void move() = 0;
 

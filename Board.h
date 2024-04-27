@@ -33,6 +33,7 @@ public:
     void updateCellOccupancy();
     void eatBugsInCell(int x, int y);
     void fight(Bug* bug1, Bug* bug2);
+    void runSimulation();
 };
 
 

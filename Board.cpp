@@ -6,6 +6,8 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <chrono>
+#include <thread>
 #include "Bug.h"
 #include "Crawler.h"
 #include "Hopper.h"
@@ -124,6 +126,17 @@ void Board::tapBuBoard()
     {
         bug->move();
     }
+
+    for(int i  = 0; i < grid.size(); ++i)
+    {
+        for (int j = 0; j <grid[i].size(); ++j)
+        {
+            if(grid[i][j].size() > 1)
+            {
+                eatBugsInCell(i, j);
+            }
+        }
+    }
 }
 
 void Board::displayLifeHistory() {
@@ -186,7 +199,7 @@ void Board::writeLifeHistoryToFile()
 
 void Board::displayAllCells()
 {
-    updateCellOccupancy();
+    //updateCellOccupancy();
 
     for(int i = 0; i < grid.size(); ++i)
     {
@@ -218,6 +231,48 @@ void Board::updateCellOccupancy()
             cell.clear();
         }
     }
+}
+
+void Board::eatBugsInCell(int x, int y)
+{
+    Bug* winner = nullptr;
+    int maxsize = -1;
+
+    for(Bug* bug: grid[x][y])
+    {
+        if(bug->getSize() > maxsize)
+        {
+            maxsize = bug->getSize();
+            winner = bug;
+        }
+    }
+
+    for(Bug* bug: grid[x][y])
+    {
+        if(bug != winner)
+        {
+            fight(winner, bug);
+        }
+    }
+}
+
+void Board::fight(Bug* winner, Bug* LOSER)
+{
+    winner->setSize(winner->getSize()+LOSER->getSize());
+    LOSER->setAlivetoDead(false);
+    LOSER->setEatenBy(winner->getID());
+}
+
+void Board::runSimulation()
+{
+    while(bugs.size() > 1)
+    {
+        tapBuBoard();
+        displayAllBugs();
+        this_thread::sleep_for(chrono::seconds(1));
+    }
+
+    cout << "Only one bug remains" << endl;
 }
 
 std::string Board::getDateTimeString() const
