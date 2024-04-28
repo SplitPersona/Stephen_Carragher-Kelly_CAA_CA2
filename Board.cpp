@@ -88,10 +88,10 @@ void Board::displayAllBugs()
 {
     for(const Bug* bug: bugs)
     {
-        cout << bug-> getID() << " " << (bug->getType() == BugType::CRAWLER ? "Crawler" : "Hopper")
-        << " (" << bug->getPosition().first << "," << bug->getPosition().second << ")"
-        << " " << bug->getSize() << " " << bug->getDirectionasString()
-        << (bug->getType() == BugType::HOPPER ? " " + to_string(static_cast<const Hopper*>(bug)->getHopLength()): "")
+        cout << bug->getID() << " " << (bug->getType() == BugType::CRAWLER ? "Crawler" :
+        (bug->getType() == BugType::HOPPER ? "Hopper" : "Digger")) << " (" << bug->getPosition().first << ","
+        << bug->getPosition().second << ")"<< " " << bug->getSize() << " " << bug->getDirectionasString() <<
+        (bug->getType() == BugType::HOPPER ? " " + to_string(static_cast<const Hopper*>(bug)->getHopLength()): "")
         << (bug->isAlive() ? "Alive" : "Dead") << endl;
         //i hate this ^ so much.
     }
@@ -152,6 +152,10 @@ void Board::displayLifeHistory() {
         {
             cout << "Crawler ";
         }
+        else if (bug->getType() == BugType::DIGGER)
+        {
+            cout << "Digger ";
+        }
         else
         {
             cout << "Hopper ";
@@ -184,6 +188,10 @@ void Board::writeLifeHistoryToFile()
         if(bug->getType() == BugType::CRAWLER)
         {
             outFile<<"Crawler ";
+        }
+        else if (bug->getType() == BugType::DIGGER)
+        {
+            cout << "Digger ";
         }
         else
         {
