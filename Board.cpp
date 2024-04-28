@@ -11,6 +11,7 @@
 #include "Bug.h"
 #include "Crawler.h"
 #include "Hopper.h"
+#include "Digger.h"
 
 using namespace std;
 
@@ -66,6 +67,10 @@ void Board::initializeBugBoard(const string &filename) {
             }
             int hopLength = stoi(hopLengthStr);
             bug = new Hopper(id, x, y, direction, size, hopLength);
+        }
+        else if(type == 'D')
+        {
+            bug = new Digger(id, x, y, direction, size);
         }
         else
         {
@@ -199,7 +204,7 @@ void Board::writeLifeHistoryToFile()
 
 void Board::displayAllCells()
 {
-    //updateCellOccupancy();
+    updateCellOccupancy();
 
     for(int i = 0; i < grid.size(); ++i)
     {

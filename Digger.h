@@ -10,12 +10,15 @@
 
 class Digger : public Bug
         {
-public:
+        public:
             Digger(int id, int x, int y, Direction direction, int size);
-
             virtual void move() override;
 
-};
+            virtual BugType getType() const override
+            {
+                return BugType::DIGGER;
+            }
+        };
 
 
 #endif //STEPHEN_CARRAGHER_KELLY_CA2_DIGGER_H

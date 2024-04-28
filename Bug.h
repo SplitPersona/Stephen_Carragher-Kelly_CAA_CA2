@@ -20,7 +20,8 @@ enum class Direction
 enum class BugType
         {
     CRAWLER,
-    HOPPER
+    HOPPER,
+    DIGGER
         };
 
 class pair;
